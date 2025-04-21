@@ -1,0 +1,9 @@
+name: uhc-cuarenee
+version: '1.0-SNAPSHOT'
+main: com.sp3ctr3.uhc.uhcCuarenee.Main
+api-version: '1.21'
+
+commands:
+  uhc:
+    description: 'Comando base para controlar los comandos del plugin'
+    usage: '/uhc <start|stop|scatter>'
