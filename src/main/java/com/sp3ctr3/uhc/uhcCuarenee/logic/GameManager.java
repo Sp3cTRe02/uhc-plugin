@@ -2,6 +2,8 @@ package com.sp3ctr3.uhc.uhcCuarenee.logic;
 
 import com.sp3ctr3.uhc.uhcCuarenee.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.GameRule;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -39,6 +41,17 @@ public class GameManager {
 
                     countdown--;
                 } else {
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.setGameMode(GameMode.SURVIVAL);
+                        player.setHealth(player.getMaxHealth());
+                        player.setFoodLevel(20);
+                        player.setSaturation(20f);
+                    }
+
+                    Bukkit.broadcastMessage("§dUHC Cuarenee §7» §f¡Ha iniciado la partida!");
+                    Bukkit.getWorld("world").setGameRule(GameRule.NATURAL_REGENERATION, false);
+                    Bukkit.getWorld("world").setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, false);
+
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle("§a¡La partida ha comenzado!", "", 10, 40, 10);
                         player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1f, 1f);

@@ -53,7 +53,6 @@ public class Commands implements CommandExecutor, TabCompleter {
         switch (sub) {
             case START:
                 sender.sendMessage("§aIniciando partida de UHC...");
-                sender.sendMessage("§dUHC Cuarenee §7» §f¡Ha iniciado la partida!");
                 GameManager.startGame();
                 break;
             case STOP:

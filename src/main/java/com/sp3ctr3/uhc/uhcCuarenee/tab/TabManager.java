@@ -23,7 +23,7 @@ public class TabManager {
 
     public static void setDefaultTab(Player player) {
         player.setPlayerListHeader(
-                ChatColor.GOLD + "" + ChatColor.BOLD + "UHC Cuarenee"
+                ChatColor.DARK_PURPLE + "" + ChatColor.DARK_PURPLE + "UHC Cuarenee"
         );
         player.setPlayerListFooter(
                 ChatColor.GOLD + "¡Bienvenidos a todos!"
