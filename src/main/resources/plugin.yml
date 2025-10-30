@@ -1,9 +1,22 @@
 name: uhc-cuarenee
-version: '1.0-SNAPSHOT'
+version: '${version}'
 main: com.sp3ctr3.uhc.uhcCuarenee.Main
 api-version: '1.21'
+author: Sp3cTRe02
+description: Plugin de UHC Cuarenee con sistema de tab personalizado y gestión de partidas
+
+# Dependencias
+depend:
+  - ProtocolLib
 
 commands:
   uhc:
-    description: 'Comando base para controlar los comandos del plugin'
+    description: 'Comando principal del plugin UHC'
     usage: '/uhc <start|stop|scatter>'
+    permission: uhc.admin
+    permission-message: '§cNo tienes permisos para usar este comando.'
+
+permissions:
+  uhc.admin:
+    description: 'Permite usar todos los comandos del plugin UHC'
+    default: op

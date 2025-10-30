@@ -16,10 +16,16 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven {
+        name = "dmulloy2-repo"
+        url = "https://repo.dmulloy2.net/repository/public/"
+    }
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT")
+    compileOnly("com.comphenix.protocol:ProtocolLib:5.3.0")
+    compileOnly("com.mojang:authlib:3.11.50")
 }
 
 tasks {
@@ -28,6 +34,11 @@ tasks {
         // This is the only required configuration besides applying the plugin.
         // Your plugin's jar (or shadowJar if present) will be used automatically.
         minecraftVersion("1.21")
+        
+        // Descargar ProtocolLib automáticamente
+        downloadPlugins {
+            url("https://github.com/dmulloy2/ProtocolLib/releases/download/5.3.0/ProtocolLib.jar")
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 package com.sp3ctr3.uhc.uhcCuarenee.logic;
 
 import com.sp3ctr3.uhc.uhcCuarenee.Main;
+import com.sp3ctr3.uhc.uhcCuarenee.tab.TabManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
@@ -27,8 +28,6 @@ public class GameManager {
             @Override
             public void run() {
 
-
-
                 if (countdown > 0) {
                     String color = getColorFor(countdown);
 
@@ -47,10 +46,15 @@ public class GameManager {
                         player.setFoodLevel(20);
                         player.setSaturation(20f);
                     }
-
                     Bukkit.broadcastMessage("§dUHC Cuarenee §7» §f¡Ha iniciado la partida!");
                     Bukkit.getWorld("world").setGameRule(GameRule.NATURAL_REGENERATION, false);
-                    Bukkit.getWorld("world").setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, false);
+
+                    SkinChanger.assignRandomSkinsToAll();
+
+                    Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
+                        TabManager.setGamingTabForAll();
+                        TabManager.startGamingTabUpdater();
+                    }, 1L);
 
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle("§a¡La partida ha comenzado!", "", 10, 40, 10);
@@ -67,7 +71,7 @@ public class GameManager {
                     this.cancel();
                 }
             }
-        }.runTaskTimer(Main.getInstance(), 0L, 20L); // cada 20 ticks = 1 segundo
+        }.runTaskTimer(Main.getInstance(), 0L, 20L);
     }
 
     private static String getColorFor(int number) {
@@ -101,6 +105,11 @@ public class GameManager {
         }
 
         gameRunning = false;
+
+        SkinChanger.clearAll();
+
+        TabManager.stopGamingTabUpdater();
+        TabManager.setDefaultTabForAll();
         Bukkit.broadcastMessage("§6[UHC] §cLa partida ha sido detenida.");
     }
 }
